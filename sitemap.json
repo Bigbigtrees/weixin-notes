@@ -1,0 +1,9 @@
+{
+  "desc": "weixin-notes sitemap",
+  "rules": [
+    {
+      "action": "allow",
+      "page": "*"
+    }
+  ]
+}

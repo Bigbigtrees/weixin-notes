@@ -1,0 +1,11 @@
+<view class="page" wx:if="{{note}}">
+  <view class="note-detail">
+    <text class="note-detail-title">{{note.title}}</text>
+    <text class="note-detail-meta">{{note.createdAt}} 添加</text>
+  </view>
+
+  <view class="action-bar">
+    <!-- 按钮文案以「分享」开头，微信会自动触发 onShareAppMessage 朋友圈分享；仅在可分享状态（笔记存在）展示，防误触 -->
+    <button class="action-btn share-btn">分享到朋友圈</button>
+  </view>
+</view>

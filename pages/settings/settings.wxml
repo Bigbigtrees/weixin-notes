@@ -1,0 +1,33 @@
+<view class="page">
+  <view class="section-title">主题设置</view>
+
+  <view class="theme-list">
+    <view
+      class="theme-option {{theme === item ? 'theme-option-active' : ''}}"
+      wx:for="{{themeList}}"
+      wx:key="*this"
+      data-theme="{{item}}"
+      bindtap="switchTheme"
+    >
+      <text class="theme-option-name">{{item}}</text>
+      <text class="theme-option-check">{{theme === item ? '✓' : ''}}</text>
+    </view>
+  </view>
+
+  <view class="section-title">分享签名（自定义文案）</view>
+
+  <view class="signature-box">
+    <input
+      class="signature-input"
+      type="text"
+      placeholder="设置分享到朋友圈的自定义签名文案（可留空）"
+      value="{{signature}}"
+      bindinput="onSignatureInput"
+    />
+    <button class="signature-save" bindtap="saveSignature">保存</button>
+  </view>
+
+  <view class="reset-row" bindtap="resetSignature">
+    <text class="reset-text">清空签名</text>
+  </view>
+</view>

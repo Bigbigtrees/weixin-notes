@@ -1,0 +1,17 @@
+/* 主题变量：light / dark 两套，通过 page[data-theme] 切换，切换即时生效（AC-1） */
+page {
+  --theme-bg: #f5f6f8;
+  --theme-card: #ffffff;
+  --theme-text: #1f2329;
+  --theme-text-secondary: #6b7280;
+  --theme-border: #e5e6eb;
+}
+
+/* 深色主题：各主题下文字对比度满足可访问性预期（AC-6） */
+page[data-theme="dark"] {
+  --theme-bg: #171717;
+  --theme-card: #262626;
+  --theme-text: #f0f0f0;
+  --theme-text-secondary: #a8a8a8;
+  --theme-border: #3a3a3a;
+}
