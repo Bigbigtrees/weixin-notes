@@ -35,6 +35,8 @@ Page({
       return
     }
     addNote(title)
+    // 新增后刷新页面展示列表（统一数据源已写入，此处同步展示数据，保证列表即时显示新笔记，AC-5）
+    this.loadNotes()
     this.setData({ noteTitle: '' })
     wx.showToast({ title: '已添加', icon: 'success' })
   },

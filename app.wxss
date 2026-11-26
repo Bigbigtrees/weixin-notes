@@ -3,7 +3,7 @@ page {
   --theme-bg: #f5f6f8;
   --theme-card: #ffffff;
   --theme-text: #1f2329;
-  --theme-text-secondary: #6b7280;
+  --theme-text-secondary: #636972;
   --theme-border: #e5e6eb;
 }
 
