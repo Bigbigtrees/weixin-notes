@@ -12,10 +12,8 @@ Page({
   },
 
   onShow() {
+    // 读取持久化的主题与签名并同步页面选中态；根节点 data-theme 随 theme 即时呈现当前主题（AC-1/AC-2）
     this.loadSettings()
-    // 进入设置页时应用当前全局主题（wx.setPageAttribute 作用于当前页，跨页面不保留属性，
-    // 防止全局为 dark 时设置页恒呈浅色，AC-1/AC-2）
-    getApp().applyTheme()
   },
 
   loadSettings() {

@@ -42,3 +42,12 @@ function setSignature(signature) {
   wx.setStorageSync(STORAGE_KEY, pref)
   return pref.signature
 }
+
+module.exports = {
+  DEFAULT_THEME,
+  THEMES,
+  getTheme,
+  setTheme,
+  getSignature,
+  setSignature
+}

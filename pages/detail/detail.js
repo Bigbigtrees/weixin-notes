@@ -4,21 +4,22 @@
  *   自定义签名经分享卡片标题传递（AC-3/AC-4）。该通道无法用普通按钮直接触发，
  *   故提供带 open-type="share" 的「转发给好友」按钮作为可触发的分享通道。
  */
-const { findNote } = require('../utils/notes.js')
-const { getSignature } = require('../utils/theme.js')
+const { findNote } = require('../../utils/notes.js')
+const { getSignature } = require('../../utils/theme.js')
 
 Page({
   data: {
-    note: null
+    note: null,
+    theme: 'light'
   },
 
   onLoad(options) {
     const app = getApp()
     // 从统一数据源 app.globalData.notes 按 id 读取（与列表页写入一致，AC-5）
     const note = findNote(options.id)
-    this.setData({ note })
-    // 每个页面进入时兜底应用当前全局主题（AC-1/AC-2）
-    getApp().applyTheme()
+    this.setData({ note, theme: app.globalData.theme })
+    // 启用右上角「分享给好友 / 分享到朋友圈」菜单（含朋友圈通道，AC-3）
+    wx.showShareMenu({ menus: ['shareAppMessage', 'shareTimeline'] })
   },
 
   // 微信朋友圈分享通道：携带自定义签名到朋友圈分享卡片（AC-3/AC-4）

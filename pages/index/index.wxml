@@ -1,8 +1,9 @@
-<view class="page">
+<view class="page" data-theme="{{theme}}">
   <view class="header">
     <text class="header-title">我的笔记</text>
-    <text class="header-hint">点击标题查看笔记，可分享到朋友圈</text>
+    <view class="header-settings" role="button" aria-label="打开主题与分享签名设置" bindtap="goSettings">主题 / 签名设置</view>
   </view>
+  <text class="header-hint">点击标题查看笔记，可分享到朋友圈</text>
 
   <view class="note-list">
     <view

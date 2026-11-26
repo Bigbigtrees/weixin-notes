@@ -50,3 +50,11 @@ function findNote(id) {
   const notes = app.globalData.notes || []
   return notes.find((n) => String(n.id) === String(id))
 }
+
+module.exports = {
+  loadNotes,
+  persistNotes,
+  addNote,
+  removeNote,
+  findNote
+}

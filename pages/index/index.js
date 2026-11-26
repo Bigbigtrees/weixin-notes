@@ -1,20 +1,21 @@
 /**
  * 记笔记列表页（核心流程：新增/查看/删除笔记）
- * 本页不引入主题与分享逻辑（主题与分享在设置页/详情页处理），保证核心流程无回归（AC-5）。
+ * 主题通过根节点 data-theme 应用，签名与分享在设置页/详情页处理，保证核心流程无回归（AC-5）。
  * 笔记通过 utils/notes.js 统一读写 app.globalData.notes，保证与详情页数据一致。
  */
-const { addNote, removeNote } = require('../utils/notes.js')
+const { addNote, removeNote } = require('../../utils/notes.js')
 
 Page({
   data: {
     notes: [],
-    noteTitle: ''
+    noteTitle: '',
+    theme: 'light'
   },
 
   onShow() {
     this.loadNotes()
-    // 每个页面进入时兜底应用当前全局主题（AC-1/AC-2，确保跨页面主题即时生效）
-    getApp().applyTheme()
+    // 每个页面进入时按全局主题应用根节点 data-theme（即时生效，AC-1/AC-2）
+    this.setData({ theme: getApp().globalData.theme })
   },
 
   // 从全局数据源加载笔记（M-1：真实加载而非无效 setData）
@@ -44,6 +45,10 @@ Page({
   goDetail(e) {
     const id = e.currentTarget.dataset.id
     wx.navigateTo({ url: `/pages/detail/detail?id=${id}` })
+  },
+
+  goSettings() {
+    wx.navigateTo({ url: '/pages/settings/settings' })
   },
 
   deleteNote(e) {

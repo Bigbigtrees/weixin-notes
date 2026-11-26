@@ -1,4 +1,4 @@
-<view class="page" wx:if="{{note}}">
+<view class="page" data-theme="{{theme}}" wx:if="{{note}}">
   <view class="note-detail">
     <text class="note-detail-title">{{note.title}}</text>
     <text class="note-detail-meta">{{note.createdAt}} 添加</text>

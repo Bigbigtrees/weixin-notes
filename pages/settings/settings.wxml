@@ -1,4 +1,4 @@
-<view class="page">
+<view class="page" data-theme="{{theme}}">
   <view class="section-title">主题设置</view>
 
   <view class="theme-list">
@@ -7,6 +7,8 @@
       wx:for="{{themeList}}"
       wx:key="*this"
       data-theme="{{item}}"
+      role="button"
+      aria-label="切换到 {{item}} 主题"
       bindtap="switchTheme"
     >
       <text class="theme-option-name">{{item}}</text>
