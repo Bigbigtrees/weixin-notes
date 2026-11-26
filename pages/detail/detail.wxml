@@ -5,7 +5,8 @@
   </view>
 
   <view class="action-bar">
-    <!-- 按钮文案以「分享」开头，微信会自动触发 onShareAppMessage 朋友圈分享；仅在可分享状态（笔记存在）展示，防误触 -->
-    <button class="action-btn share-btn">分享到朋友圈</button>
+    <!-- 分享入口：open-type="share" 由微信平台自动触发 onShareAppMessage 转发通道，签名随转发携带（AC-4）。
+         微信朋友圈分享依赖平台 onShareTimeline（右上角「分享到朋友圈」菜单触发），无法用普通按钮直接触发（AC-3/AC-4）。 -->
+    <button class="action-btn share-btn" open-type="share">转发给好友</button>
   </view>
 </view>

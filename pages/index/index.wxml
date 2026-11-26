@@ -9,6 +9,7 @@
       class="note-item"
       wx:for="{{notes}}"
       wx:key="id"
+      data-id="{{item.id}}"
       bindtap="goDetail"
     >
       <text class="note-item-title">{{item.title}}</text>
@@ -16,14 +17,16 @@
       <text class="note-item-del" data-id="{{item.id}}" catchtap="deleteNote">删除</text>
     </view>
 
-    <view class="add-note" bindtap="addNote">
+    <view class="add-note">
       <text class="add-note-title">新增笔记</text>
       <input
         class="add-note-input"
         type="text"
+        value="{{noteTitle}}"
+        bindinput="onInput"
         placeholder="输入笔记标题"
-        bindinput="addNote"
       />
+      <button class="add-note-save" bindtap="addNote">添加</button>
     </view>
   </view>
 </view>
