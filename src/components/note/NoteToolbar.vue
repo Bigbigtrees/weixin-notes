@@ -17,7 +17,7 @@ const filterOptions: Array<{ value: string; label: string }> = [
 </script>
 
 <template>
-  <div class="note-toolbar" role="search">
+  <div class="note-toolbar">
     <div class="note-toolbar__field">
       <label for="note-search-input" class="input__label">搜索笔记</label>
       <input

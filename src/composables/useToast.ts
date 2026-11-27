@@ -1,3 +1,5 @@
+import { reactive } from 'vue'
+
 export type ToastType = 'success' | 'error' | 'info'
 
 export interface ToastItem {
@@ -6,7 +8,9 @@ export interface ToastItem {
   type: ToastType
 }
 
-export const toasts: ToastItem[] = []
+// 使用 reactive 包装，使 push/remove 对 toasts 的变更触发 v-for 重渲染
+// （模块级普通数组不做副作用追踪，会导致 Toast 不更新、aria-live 播报失效）。
+export const toasts = reactive<ToastItem[]>([])
 let nextId = 1
 
 export function pushToast(message: string, type: ToastType = 'info'): number {

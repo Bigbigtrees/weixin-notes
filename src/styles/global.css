@@ -136,10 +136,9 @@ select:focus-visible,
   font-size: 18px;
 }
 
-/* Sidebar / bottom nav */
+/* Sidebar / bottom nav (响应式：桌面端显示侧边导航，移动端显示底部固定导航) */
 .sidebar {
-  width: 240px;
-  flex: 0 0 240px;
+  width: 100%;
 }
 
 .sidebar__desktop {
@@ -160,6 +159,19 @@ select:focus-visible,
   z-index: 20;
   background: var(--color-surface);
   border-top: 1px solid var(--color-border);
+}
+
+@media (min-width: 640px) {
+  .sidebar {
+    width: 240px;
+    flex: 0 0 240px;
+  }
+  .sidebar__desktop {
+    display: flex;
+  }
+  .sidebar__mobile {
+    display: none;
+  }
 }
 
 .nav-link {

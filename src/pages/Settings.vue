@@ -34,7 +34,7 @@ function doRestore(): void {
     </div>
 
     <div class="settings">
-      <Card aria-label="数据管理设置卡片">
+      <Card>
         <p class="settings__hint">当前保存的笔记存储在浏览器本地存储中，清空后不可恢复（可随时从示例恢复）。</p>
         <div class="settings__actions">
           <button type="button" class="btn btn--secondary" @click="showClear = true">清空本地笔记</button>
