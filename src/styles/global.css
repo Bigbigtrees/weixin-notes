@@ -172,6 +172,37 @@ select:focus-visible,
   .sidebar__mobile {
     display: none;
   }
+
+  /* 桌面端：侧边导航 + 主内容区（页头/页脚通栏） */
+  .app {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    grid-template-areas:
+      'header header'
+      'sidebar main'
+      'footer footer';
+    align-items: start;
+  }
+  .header {
+    grid-area: header;
+  }
+  .container {
+    grid-area: main;
+  }
+  .sidebar {
+    grid-area: sidebar;
+    align-self: stretch;
+  }
+  .footer {
+    grid-area: footer;
+  }
+}
+
+/* 移动端底部导航为固定定位，预留空间避免遮挡页脚 */
+@media (max-width: 639px) {
+  .footer {
+    padding-bottom: 80px;
+  }
 }
 
 .nav-link {

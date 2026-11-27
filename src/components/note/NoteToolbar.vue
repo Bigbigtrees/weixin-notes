@@ -22,7 +22,7 @@ const filterOptions: Array<{ value: string; label: string }> = [
       <label for="note-search-input" class="input__label">搜索笔记</label>
       <input
         id="note-search-input"
-        type="input"
+        type="text"
         class="input"
         :value="props.query"
         placeholder="按标题或内容搜索"

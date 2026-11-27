@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useNotesStore } from '../stores/notes'
 import { useToast } from '../composables/useToast'
 import EditorToolbar from '../components/note/EditorToolbar.vue'
@@ -8,6 +8,7 @@ import ConfirmDialog from '../components/ui/ConfirmDialog.vue'
 
 const store = useNotesStore()
 const toast = useToast()
+const route = useRoute()
 const router = useRouter()
 
 const title = ref('')
@@ -16,6 +17,14 @@ const saving = ref(false)
 const showDeleteConfirm = ref(false)
 
 const isEdit = computed(() => !!store.selectedId && store.selectedId !== 'new')
+
+watch(
+  () => route.params.id,
+  (id) => {
+    store.openEditor(typeof id === 'string' ? id : undefined)
+  },
+  { immediate: true },
+)
 
 watch(
   () => store.selectedId,
@@ -38,6 +47,10 @@ function scheduleSave(): void {
 }
 
 function save(): void {
+  if (debounceTimer) {
+    clearTimeout(debounceTimer)
+    debounceTimer = null
+  }
   if (!title.value.trim() && !content.value.trim()) {
     toast.show('请输入笔记标题与内容', 'error')
     return
@@ -50,23 +63,24 @@ function save(): void {
         content: content.value,
       })
     } else {
-      store.createNote(title.value, content.value)
+      const created = store.createNote(title.value, content.value)
+      store.openEditor(created.id)
+      void router.replace(`/editor/${created.id}`)
     }
     toast.show('已保存', 'success')
   } finally {
     saving.value = false
-    scheduleSave()
   }
 }
 
-watch(() => [title.value, content.value], scheduleSave, { deep: true })
-
 function onTitle(value: string): void {
   title.value = value
+  scheduleSave()
 }
 
 function onContent(value: string): void {
   content.value = value
+  scheduleSave()
 }
 
 function onSave(): void {
@@ -100,6 +114,7 @@ function onKeydown(event: KeyboardEvent): void {
     } else if (key === 'n') {
       event.preventDefault()
       store.openEditor('new')
+      void router.push('/editor')
     }
   }
 }

@@ -9,6 +9,7 @@ const routes = [
   { path: '/', name: 'home', component: Home, meta: { title: 'weixin-notes 首页' } },
   { path: '/notes/:id', name: 'note-detail', component: NoteDetail, meta: { title: '笔记详情' } },
   { path: '/editor', name: 'editor', component: EditorContainer, meta: { title: '编辑笔记' } },
+  { path: '/editor/:id', name: 'note-edit', component: EditorContainer, meta: { title: '编辑笔记' } },
   { path: '/settings', name: 'settings', component: SettingsContainer, meta: { title: '设置' } },
   { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFound, meta: { title: '页面未找到' } },
 ]

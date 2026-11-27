@@ -8,6 +8,7 @@ const router = useRouter()
 
 function onEdit(id: string): void {
   store.openEditor(id)
+  void router.push(id === 'new' ? '/editor' : `/editor/${id}`)
 }
 
 function onOpen(id: string): void {
@@ -21,7 +22,7 @@ function onDelete(id: string): void {
 
 <template>
   <NoteList
-    :notes="store.notes"
+    :notes="store.filteredNotes"
     :query="store.query"
     :filter="store.filter"
     @search="store.setQuery"

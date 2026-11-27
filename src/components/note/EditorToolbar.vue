@@ -13,13 +13,15 @@ const emit = defineEmits(['update:title', 'update:content', 'save', 'cancel'])
 <template>
   <div class="editor-toolbar">
     <Input
-      :value="props.title"
+      :model-value="props.title"
+      id="note-title-input"
       aria-label="笔记标题"
       placeholder="笔记标题"
       @update:modelValue="emit('update:title', $event)"
     />
     <Input
-      :value="props.content"
+      :model-value="props.content"
+      id="note-content-input"
       type="textarea"
       aria-label="笔记内容"
       placeholder="笔记内容"

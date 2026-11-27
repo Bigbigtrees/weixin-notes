@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const props = defineProps({
   modelValue: { type: [String, Number], default: '' },
-  type: { type: String, default: 'input' },
+  type: { type: String, default: 'text' },
   placeholder: { type: String, default: '' },
   ariaLabel: { type: String, default: '' },
   ariaInvalid: { type: Boolean, default: false },
@@ -30,9 +30,9 @@ function onInput(event: Event): void {
     </label>
 
     <input
-      v-if="props.type === 'input'"
+      v-if="props.type === 'text'"
       :id="props.id"
-      type="input"
+      type="text"
       :value="props.modelValue"
       :placeholder="props.placeholder"
       :aria-label="props.ariaLabel"

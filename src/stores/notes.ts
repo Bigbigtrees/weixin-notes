@@ -44,8 +44,9 @@ export const useNotesStore = defineStore('notes', {
     },
     openEditor(id?: string): void {
       this.selectedId = id ?? 'new'
-      this.draftTitle = ''
-      this.draftContent = ''
+      const note = id && id !== 'new' ? notesApi.get(id) : undefined
+      this.draftTitle = note?.title ?? ''
+      this.draftContent = note?.content ?? ''
     },
     createNote(
       title: string,

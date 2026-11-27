@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useNotesStore } from '../stores/notes'
 import { useToast } from '../composables/useToast'
 import ConfirmDialog from '../components/ui/ConfirmDialog.vue'
@@ -8,6 +8,7 @@ import ConfirmDialog from '../components/ui/ConfirmDialog.vue'
 const store = useNotesStore()
 const toast = useToast()
 const route = useRoute()
+const router = useRouter()
 
 const noteId = computed(() => (typeof route.params.id === 'string' ? route.params.id : ''))
 const note = computed(
@@ -16,6 +17,7 @@ const note = computed(
 
 function edit(): void {
   store.openEditor(noteId.value)
+  void router.push(`/editor/${noteId.value}`)
 }
 
 function remove(): void {
